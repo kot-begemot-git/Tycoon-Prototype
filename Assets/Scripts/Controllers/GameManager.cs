@@ -64,17 +64,18 @@ public class GameManager : MonoBehaviour
 
     public bool HasEnoughResources()
     {
+        if (_craftManager.ProductionAmount <= 0) return false;
         BlueprintData blueprint = _craftManager.CurrentBlueprint;
         ResourceAmount firstRes = blueprint.FirstResource;
         ResourceAmount secondRes = blueprint.SecondResource;
 
-        int requiredFirst = firstRes.Amount * _craftManager.ProductionAmount;
-        int requiredSecond = secondRes.Amount * _craftManager.ProductionAmount;
+        int requiredFirstRes = firstRes.Amount * _craftManager.ProductionAmount;
+        int requiredSecondRes = secondRes.Amount * _craftManager.ProductionAmount;
 
         PlayerModel.Resources.TryGetValue(firstRes.ResourceType, out int firstResPlayerAmount);
         PlayerModel.Resources.TryGetValue(secondRes.ResourceType, out int secondResPlayerAmount);
 
-        return firstResPlayerAmount >= requiredFirst &&
-               secondResPlayerAmount >= requiredSecond;
+        return firstResPlayerAmount >= requiredFirstRes &&
+               secondResPlayerAmount >= requiredSecondRes;
     }
 }
