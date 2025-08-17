@@ -6,19 +6,20 @@ public class ConstructionManager : MonoBehaviour
 {
 
     [SerializeField] private DragAndDrop _dragAndDropSystem;
-    private GameManager _gameManager;
     private BuildingData _currentBuildingData;
     private GameObject _currentBuilding;
-
-    private void Awake()
-    {
-        _gameManager = FindObjectOfType<GameManager>();
-    }
 
     public void StartBuilding(BuildingData buildingData)
     {
         _currentBuildingData = buildingData;
         _currentBuilding = Instantiate(buildingData.prefab);
+
+        Building buildingComponent = _currentBuilding.GetComponent<Building>();
+        if (buildingComponent != null)
+        {
+            buildingComponent.BuildingData = buildingData;
+        }
+
         _dragAndDropSystem.StartDrag(_currentBuilding);
     }
 
@@ -26,7 +27,7 @@ public class ConstructionManager : MonoBehaviour
     {
         _currentBuilding.GetComponent<Building>().IsBuilt = true;
         _currentBuilding = null;
-        _gameManager.PlayerModel.AddMoney(-_currentBuildingData.buildCost);
+        GameManager.Instance.PlayerModel.Money = -_currentBuildingData.buildCost;
         _currentBuildingData = null; 
     }
 }

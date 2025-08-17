@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fe41cf3aab9c2a4e926ddfff5ba1838, type: 3}
-  m_Name: PlasticFactory
+  m_Name: Office1
   m_EditorClassIdentifier: 
-  buildingName: PlasticFactory
-  buildCost: 50000
-  prefab: {fileID: 3826411237030323462, guid: e37c2cab93405664b84903be1c334b59, type: 3}
+  buildingName: Office1
+  buildCost: 0
+  prefab: {fileID: 9005351390388919583, guid: 666150f960184ad4899318f593bfec0c, type: 3}

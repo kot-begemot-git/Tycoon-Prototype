@@ -6,11 +6,10 @@ public class CraftManager : MonoBehaviour
 {
     public int ProductionAmount { get; set; }
     public BlueprintData CurrentBlueprint { get; set; }
-    private GameManager _gameManager;
 
-    private void Awake()
+    public void SetProductionAmountDef()
     {
-        _gameManager = FindObjectOfType<GameManager>();
+        ProductionAmount = 1;
     }
 
     public void StartCraft()
@@ -21,10 +20,10 @@ public class CraftManager : MonoBehaviour
         int firstAmount = firstRes.Amount * ProductionAmount;
         int secondAmount = secondRes.Amount * ProductionAmount;
 
-        _gameManager.PlayerModel.AddResource(firstRes.ResourceType, -firstAmount);
-        _gameManager.PlayerModel.AddResource(secondRes.ResourceType, -secondAmount);
+        GameManager.Instance.PlayerModel.AddResource(firstRes.ResourceType, -firstAmount);
+        GameManager.Instance.PlayerModel.AddResource(secondRes.ResourceType, -secondAmount);
 
         string productName = CurrentBlueprint.name;
-        _gameManager.PlayerModel.AddProduct(productName, ProductionAmount);
+        GameManager.Instance.PlayerModel.AddProduct(productName, ProductionAmount);
     }
 }

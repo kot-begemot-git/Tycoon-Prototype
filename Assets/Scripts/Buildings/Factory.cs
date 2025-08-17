@@ -9,6 +9,6 @@ public class Factory : Building
 
     protected override void DoIncome()
     {
-        _gameManager.PlayerModel.AddResource(_producedResource, _amount * _gameManager.PlayerModel.Level);
+        GameManager.Instance.PlayerModel.AddResource(_producedResource, _amount * GameManager.Instance.PlayerModel.Level);
     }
 }

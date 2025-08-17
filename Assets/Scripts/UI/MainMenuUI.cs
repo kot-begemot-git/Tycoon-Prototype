@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -41,12 +40,12 @@ public class MainMenuUI : MonoBehaviour
 
     private void OnStartNewGameClicked()
     {
-        SceneManager.LoadScene("GameScene");
+        GameManager.Instance.StartNewGame();
     }
 
     private void OnLoadGameClicked()
     {
-        Debug.Log("Load game not implemented yet.");
+        GameManager.Instance.LoadGame();
     }
 
     private void OnOpenSettingsClicked()
@@ -81,6 +80,18 @@ public class MainMenuUI : MonoBehaviour
 
         Debug.Log($"Applied graphics preset: {preset.name}");
         QualitySettings.renderPipeline = preset;
+    }
+
+    private void OnDestroy()
+    {
+        newGameButton.onClick.RemoveAllListeners();
+        loadGameButton.onClick.RemoveAllListeners();
+        settingsButton.onClick.RemoveAllListeners();
+        exitButton.onClick.RemoveAllListeners();
+        highButton.onClick.RemoveAllListeners();
+        middleButton.onClick.RemoveAllListeners();
+        lowButton.onClick.RemoveAllListeners();
+        backButton.onClick.RemoveAllListeners();
     }
 }
 

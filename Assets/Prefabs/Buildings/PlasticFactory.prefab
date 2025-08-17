@@ -61,7 +61,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9892a93443b535b449796b3f9fe0b570,
         type: 3}
       propertyPath: m_Name
-      value: building-f
+      value: PlasticFactory
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9892a93443b535b449796b3f9fe0b570,
         type: 3}
@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e692ff14984ccb84393f0c54ea762ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BuildingData: {fileID: 11400000, guid: 070e98e99af9fe9498f3d2e2ce177923, type: 2}
   _producedResource: 1
 --- !u!65 &-5097891334321760534
 BoxCollider:

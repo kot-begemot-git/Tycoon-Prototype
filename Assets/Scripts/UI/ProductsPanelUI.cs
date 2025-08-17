@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,16 +7,14 @@ public class ProductsPanelUI : MonoBehaviour
     [SerializeField] private GameObject _productsPanel;
     [SerializeField] private TextMeshProUGUI _carProductsText;
     [SerializeField] private Button _exitButton;
-    private GameManager _gameManager;
-
+   
     private void Awake()
     {
-        _gameManager = FindObjectOfType<GameManager>();
         Init();
     }
     private void OnEnable()
     {
-        var products = _gameManager.PlayerModel.Products;
+        var products = GameManager.Instance.PlayerModel.Products;
         if (products.ContainsKey("Car"))
         {
             _carProductsText.text = $"Car: {products["Car"]}";
@@ -37,5 +33,10 @@ public class ProductsPanelUI : MonoBehaviour
     private void OnExitClicked()
     {
         _productsPanel.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        _exitButton.onClick.RemoveAllListeners();
     }
 }

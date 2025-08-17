@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameUIHandler : MonoBehaviour
+public class GameUI : MonoBehaviour
 {
     [SerializeField] private Button _officeBuilding;
     [SerializeField] private Button _ironFactoryBuilding;
@@ -21,11 +21,9 @@ public class GameUIHandler : MonoBehaviour
     [SerializeField] private BuildingData _plasticFactoryBuildingData;
     [SerializeField] private GameObject _blueprintsMenu;
     [SerializeField] private GameObject _productsMenu;
-    private GameManager _gameManager;
 
     private void Awake()
     {
-        _gameManager = FindObjectOfType<GameManager>();
         Init();
     }
 
@@ -38,8 +36,15 @@ public class GameUIHandler : MonoBehaviour
         _blueprintsMenuButton.onClick.AddListener(OnBlueprintsMenuClicked);
         _saveButton.onClick.AddListener(OnSaveClicked);
         _exitToMenuButton.onClick.AddListener(OnExitClicked);
-        _gameManager.PlayerModel.OnLevelChanged += UpdateLevel;
-        _gameManager.PlayerModel.OnMoneyChanged += UpdateMoney;
+        GameManager.Instance.PlayerModel.OnLevelChanged += UpdateLevel;
+        GameManager.Instance.PlayerModel.OnMoneyChanged += UpdateMoney;
+        LoadPlayerStatsUI();
+    }
+
+    private void LoadPlayerStatsUI()
+    {
+        _moneyText.text = $"Money: {GameManager.Instance.PlayerModel.Money.ToString()}";
+        _levelText.text = $"Level: {GameManager.Instance.PlayerModel.Level.ToString()}";
     }
 
     private void UpdateLevel(int newLevel)
@@ -59,14 +64,14 @@ public class GameUIHandler : MonoBehaviour
 
     private void OnSaveClicked()
     {
-        
+        GameManager.Instance.SaveGame();
     }
 
     private void OnBuildClicked(BuildingData buildingData)
     {
-        if (_gameManager.CheckMoneyConstruction(buildingData))
+        if (GameManager.Instance.CheckMoneyConstruction(buildingData))
         {
-            _gameManager.StartBuilding(buildingData);
+            GameManager.Instance.StartBuilding(buildingData);
         }
     }
 
@@ -78,5 +83,22 @@ public class GameUIHandler : MonoBehaviour
     private void OnBlueprintsMenuClicked()
     {
         _blueprintsMenu.SetActive(true);
+    }
+
+    private void OnDestroy()
+    {
+        _officeBuilding.onClick.RemoveAllListeners();
+        _ironFactoryBuilding.onClick.RemoveAllListeners();
+        _plasticFactoryBuilding.onClick.RemoveAllListeners();
+        _productsMenuButton.onClick.RemoveAllListeners();
+        _blueprintsMenuButton.onClick.RemoveAllListeners();
+        _exitToMenuButton.onClick.RemoveAllListeners();
+        _saveButton.onClick.RemoveAllListeners();
+
+        if (GameManager.Instance != null && GameManager.Instance.PlayerModel != null)
+        {
+            GameManager.Instance.PlayerModel.OnLevelChanged -= UpdateLevel;
+            GameManager.Instance.PlayerModel.OnMoneyChanged -= UpdateMoney;
+        }
     }
 }

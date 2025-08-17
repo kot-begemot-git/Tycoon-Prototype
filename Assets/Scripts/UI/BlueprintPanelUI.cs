@@ -26,11 +26,16 @@ public class BlueprintPanelUI : MonoBehaviour
     {
         _craftManager.CurrentBlueprint = blueprint;
         _craftPanel.SetActive(true);
-        gameObject.SetActive(false);
     }
 
     private void OnExitClicked()
     {
         gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        _carBlueprintButton.onClick.RemoveAllListeners();
+        _exitButton.onClick.RemoveAllListeners();
     }
 }

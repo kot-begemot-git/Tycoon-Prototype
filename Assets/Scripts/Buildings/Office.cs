@@ -7,6 +7,6 @@ public class Office : Building
     private int _income = 1000;
     protected override void DoIncome()
     {
-        _gameManager.PlayerModel.AddMoney(_gameManager.PlayerModel.Level * _income);
+        GameManager.Instance.PlayerModel.Money = GameManager.Instance.PlayerModel.Level * _income;
     }
 }

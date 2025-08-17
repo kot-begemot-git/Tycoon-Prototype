@@ -4,15 +4,11 @@ using UnityEngine;
 
 public abstract class Building : MonoBehaviour
 {
-    protected GameManager _gameManager;
     private int _interval = 1;
     private float _currentTime = 0;
+    public BuildingData BuildingData;
     public bool IsBuilt { get; set; }
 
-    private void Awake()
-    {
-        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-    }
 
     void Update()
     {
