@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,8 +10,8 @@ public class GameManager : MonoBehaviour
     public PlayerModel PlayerModel;
     private double _baseAmount = 100000; 
     private double _multiplier = 10;
-    [SerializeField] private ConstructionManager _constructionManager;
-    [SerializeField] private CraftManager _craftManager;
+    private ConstructionManager _constructionManager;
+    private CraftManager _craftManager;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         InitCoreSystems();
     }
@@ -34,6 +36,20 @@ public class GameManager : MonoBehaviour
     private void InitCoreSystems()
     {
         PlayerModel = new PlayerModel();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "GameScene") 
+        {
+            _constructionManager = FindObjectOfType<ConstructionManager>();
+            _craftManager = FindObjectOfType<CraftManager>();
+        }
+        else if (scene.name == "MainMenu") 
+        {
+            _constructionManager = null;
+            _craftManager = null;
+        }
     }
 
     private void CheckLevelUp()

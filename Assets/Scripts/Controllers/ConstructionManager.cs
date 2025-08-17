@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class ConstructionManager : MonoBehaviour
 {
+
     [SerializeField] private DragAndDrop _dragAndDropSystem;
-    [SerializeField] private GameManager _gameManager;
+    private GameManager _gameManager;
     private BuildingData _currentBuildingData;
     private GameObject _currentBuilding;
+
+    private void Awake()
+    {
+        _gameManager = FindObjectOfType<GameManager>();
+    }
 
     public void StartBuilding(BuildingData buildingData)
     {
@@ -21,7 +27,6 @@ public class ConstructionManager : MonoBehaviour
         _currentBuilding.GetComponent<Building>().IsBuilt = true;
         _currentBuilding = null;
         _gameManager.PlayerModel.AddMoney(-_currentBuildingData.buildCost);
-        _currentBuildingData = null;
-        
+        _currentBuildingData = null; 
     }
 }

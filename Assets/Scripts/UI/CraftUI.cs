@@ -11,14 +11,15 @@ public class CraftUI : MonoBehaviour
     [SerializeField] private Button _startCraftButton;
     [SerializeField] private Slider _slider;
     [SerializeField] private CraftManager _craftManager;
-    [SerializeField] private GameManager _gameManager;
     [SerializeField] private TextMeshProUGUI _descriptionText;
     [SerializeField] private TextMeshProUGUI _quantityText;
     [SerializeField] private TextMeshProUGUI _inStockResourceText;
     [SerializeField] private TextMeshProUGUI _needResourceText;
+    private GameManager _gameManager;
 
     private void Awake()
     {
+        _gameManager = FindObjectOfType<GameManager>();
         Init();
     }
 

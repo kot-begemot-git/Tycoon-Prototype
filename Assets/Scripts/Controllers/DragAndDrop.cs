@@ -9,6 +9,7 @@ public class DragAndDrop : MonoBehaviour
     private int _defaultLayerMask;
     [SerializeField] private ConstructionManager _constructionManager;
 
+
     private void Awake()
     {
        _defaultLayerMask = LayerMask.GetMask("Default");

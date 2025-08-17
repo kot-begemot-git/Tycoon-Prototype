@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerModel
@@ -10,6 +12,11 @@ public class PlayerModel
 
     public Dictionary<ResourceType, int> Resources { get; private set; }
     public Dictionary<string, int> Products { get; private set; }
+
+    public event Action<int> OnLevelChanged;
+    public event Action<int> OnMoneyChanged;
+    //public event Action<ResourceType, int> OnResourceChanged;
+    //public event Action<string, int> OnProductChanged;
 
     public PlayerModel()
     {
@@ -22,13 +29,14 @@ public class PlayerModel
     public void UpLevel()
     {
         Level++;
+        OnLevelChanged?.Invoke(Level);
         Debug.Log(Level);
     }
     
     public void AddMoney(int value)
     {
         Money += value;
-        Debug.Log(Money);
+        OnMoneyChanged?.Invoke(Money);
     }
 
     public void AddResource(ResourceType resource, int value)
@@ -42,5 +50,19 @@ public class PlayerModel
         {
             Resources[resource] = value;
         }
+        //OnResourceChanged?.Invoke(resource, Resources[resource]);
+    }
+
+    public void AddProduct(string name, int amount)
+    {
+        if (Products.ContainsKey(name))
+        {
+            Products[name] += amount;
+        }
+        else
+        {
+            Products[name] = amount;
+        }
+        //OnProductChanged?.Invoke(name, Products[name]);
     }
 }

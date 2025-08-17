@@ -6,7 +6,12 @@ public class CraftManager : MonoBehaviour
 {
     public int ProductionAmount { get; set; }
     public BlueprintData CurrentBlueprint { get; set; }
-    [SerializeField] private GameManager _gameManager;
+    private GameManager _gameManager;
+
+    private void Awake()
+    {
+        _gameManager = FindObjectOfType<GameManager>();
+    }
 
     public void StartCraft()
     {
@@ -20,13 +25,6 @@ public class CraftManager : MonoBehaviour
         _gameManager.PlayerModel.AddResource(secondRes.ResourceType, -secondAmount);
 
         string productName = CurrentBlueprint.name;
-        if (_gameManager.PlayerModel.Products.ContainsKey(productName))
-        {
-            _gameManager.PlayerModel.Products[productName] += ProductionAmount;
-        }
-        else
-        {
-            _gameManager.PlayerModel.Products[productName] = ProductionAmount;
-        }
+        _gameManager.PlayerModel.AddProduct(productName, ProductionAmount);
     }
 }

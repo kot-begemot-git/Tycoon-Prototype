@@ -9,10 +9,11 @@ public class ProductsPanelUI : MonoBehaviour
     [SerializeField] private GameObject _productsPanel;
     [SerializeField] private TextMeshProUGUI _carProductsText;
     [SerializeField] private Button _exitButton;
-    [SerializeField] private GameManager _gameManager;
+    private GameManager _gameManager;
 
     private void Awake()
     {
+        _gameManager = FindObjectOfType<GameManager>();
         Init();
     }
     private void OnEnable()
