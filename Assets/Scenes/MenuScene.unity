@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -372,16 +372,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5971cc7f12d2f5d4694790cf7053b506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1691439645}
-  settingsPanel: {fileID: 552701636}
-  newGameButton: {fileID: 1674607630}
-  loadGameButton: {fileID: 243960042}
-  settingsButton: {fileID: 1845044491}
-  exitButton: {fileID: 207497008}
-  backButton: {fileID: 1262460384}
-  highButton: {fileID: 1570745577}
-  mediumButton: {fileID: 0}
-  lowButton: {fileID: 1698982886}
+  _mainPanel: {fileID: 1691439645}
+  _settingsPanel: {fileID: 552701636}
+  _newGameButton: {fileID: 1674607630}
+  _loadGameButton: {fileID: 243960042}
+  _settingsButton: {fileID: 1845044491}
+  _exitButton: {fileID: 207497008}
+  _backButton: {fileID: 1262460384}
+  _highButton: {fileID: 1570745577}
+  _mediumButton: {fileID: 542799390}
+  _lowButton: {fileID: 1698982886}
 --- !u!1 &207497007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,7 +1098,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &552701637
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2062,7 +2062,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1691439646
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2529,9 +2529,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1669489572541f42b948c674fd43f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highQualityAsset: {fileID: 11400000, guid: 7b7fd9122c28c4d15b667c7040e3b3fd, type: 2}
-  mediumQualityAsset: {fileID: 11400000, guid: e1260c1148f6143b28bae5ace5e9c5d1, type: 2}
-  lowQualityAsset: {fileID: 11400000, guid: d0e2fc18fe036412f8223b3b3d9ad574, type: 2}
+  HighQualityAsset: {fileID: 11400000, guid: 7b7fd9122c28c4d15b667c7040e3b3fd, type: 2}
+  MediumQualityAsset: {fileID: 11400000, guid: e1260c1148f6143b28bae5ace5e9c5d1, type: 2}
+  LowQualityAsset: {fileID: 11400000, guid: d0e2fc18fe036412f8223b3b3d9ad574, type: 2}
 --- !u!4 &1871247172
 Transform:
   m_ObjectHideFlags: 0
