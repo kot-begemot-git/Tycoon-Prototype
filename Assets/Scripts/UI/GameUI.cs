@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -39,6 +40,7 @@ public class GameUI : MonoBehaviour
         GameManager.Instance.PlayerModel.OnLevelChanged += UpdateLevel;
         GameManager.Instance.PlayerModel.OnMoneyChanged += UpdateMoney;
         LoadPlayerStatsUI();
+        Debug.Log("Current URP: " + GraphicsSettings.renderPipelineAsset.name);
     }
 
     private void LoadPlayerStatsUI()

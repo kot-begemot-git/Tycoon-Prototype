@@ -8,12 +8,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public PlayerModel PlayerModel;
+    public PlayerModel PlayerModel { get; private set; }
     private double _baseAmount = 100000; 
     private double _multiplier = 10;
     private ConstructionManager _constructionManager;
     private CraftManager _craftManager;
-
     private float _saveTimer = 0f;
     private const float AUTO_SAVE_INTERVAL = 60f;
     private List<BuildingSaveData> _buildingsToLoad;
